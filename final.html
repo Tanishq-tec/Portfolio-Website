@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio | ML & Data Science Enthusiast</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 
+           ========================================
+           PORTFOLIO STYLESHEET (Embedded)
+           ========================================
+           Theme: Dark with Purple/Blue Accents
+        */
+
+        :root {
+            --bg-color: #0a0a0c;
+            --bg-secondary: #16161a;
+            --text-color: #e1e1e6;
+            --text-muted: #a0a0a8;
+            --accent-color: #7c4dff;
+            --accent-secondary: #3f51b5;
+            --card-bg: #1c1c21;
+            --nav-height: 80px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .bg-dark {
+            background-color: var(--bg-secondary);
+        }
+
+        .accent {
+            color: var(--accent-color);
+        }
+
+        /* --- Navigation --- */
+        .navbar {
+            height: var(--nav-height);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            background-color: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section & Animated Background --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0c, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.2s;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.4s;
+        }
+
+        .hero-content p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.6s;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.8s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+        }
+
+        .primary-btn:hover {
+            background-color: #6a3de8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(124, 77, 255, 0.3);
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid var(--accent-color);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mouse {
+            width: 25px;
+            height: 45px;
+            border: 2px solid var(--text-muted);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .mouse::before {
+            content: '';
+            width: 4px;
+            height: 8px;
+            background-color: var(--accent-color);
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            animation: scrollMouse 2s infinite;
+        }
+
+        @keyframes scrollMouse {
+            0% { opacity: 1; top: 8px; }
+            100% { opacity: 0; top: 25px; }
+        }
+
+        /* --- Common Section Styles --- */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* --- About Section --- */
+        .about-content {
+            display: flex;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .interest-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .interest-list li {
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .interest-list li i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1rem;
+        }
+
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack span {
+            background-color: rgba(124, 77, 255, 0.1);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links a {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Certificates Section --- */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .cert-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .cert-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-link {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- Contact Section --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - var(--nav-height));
+                background-color: var(--bg-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Reveal Animations on Scroll */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transition: 1s all ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+        }
+
+        .fade-bottom {
+            transform: translateY(50px);
+        }
+
+        .fade-bottom.active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Portfolio<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="animated-bg"></div>
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="accent">Tanishq Lodha</span></h1>
+            <h2>Machine Learning & Data Science Enthusiast</h2>
+            <p>I build intelligent systems and extract insights from data to solve real-world problems.</p>
+            <div class="hero-btns">
+                <a href="#" target="_blank" class="btn primary-btn" id="resumeBtn">View Resume</a>
+                <a href="#contact" class="btn secondary-btn">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm a Computer Engineering student in CK Pithawala College of Engineering and Technology [expexted 2027] Surat, with a deep passion for data-driven technologies. I enjoy exploring the intersection of mathematics, programming, and real-world problem solving.</p>
+                    <p>My core interests lie in:</p>
+                    <ul class="interest-list">
+                        <li><i class="fas fa-robot"></i> Machine Learning</li>
+                        <li><i class="fas fa-chart-line"></i> Data Analytics</li>
+                        <li><i class="fas fa-brain"></i> Generative AI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section bg-dark">
+        <div class="container">
+            <h2 class="section-title">My <span>Skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-magnifying-glass-chart"></i>
+                    <h3>Exploratory Data Analysis (EDA)</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-filter"></i>
+                    <h3>Data Preprocessing</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python Programming</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML, CSS</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-link"></i>
+                    <h3>LangChain (Gen AI)</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2 class="section-title">Featured <span>Projects</span></h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Fund Allocation by ML</h3>
+                        <p>This Model provides an interactive way to allocate funds efficiently in different domains based on data-driven insights.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Scikit-Learn</span>
+                            <span>Pandas</span>
+                            <span>Seaborn</span>
+                            <span>Matplotlib</span>
+                            <span>joblib</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Tanishq-tec/Fund-Allocation-by-ML"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Crop Yield Prediction</h3>
+                        <p>A Machine learning model built to predict crop yield, fertilizer, and pesticide requirements based on farm ,area, soil and other parameters.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Scikit-Learn</span>
+                            <span>Pandas</span>
+                            <span>Matplotlib</span>
+                            <span>Seaborn</span>
+                            <span>joblib</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Tanishq-tec/FarmSevak-Prediction"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Netflix Customer Churn Prediction</h3>
+                        <p>The Netflix Churn Prediction model is designed to identify subscribers who are likely to cancel their Netflix subscription in the near future.The model is trained using users historical customer data.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Scikit-learn</span>
+                            <span>Pandas</span>
+                            <span>Matplotlib</span>
+                            <span>Seaborn</span>
+                            <span>joblib</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Tanishq-tec/Netflix-Churn-Prediction"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>AI Interview Prep Bot</h3>
+                        <p>An AI-powered interview preparation tool built using Streamlit, LangChain and OpenRouter LLMs. This application generates customized interview preparation plans based on user-selected experience level, interview type, and skill focus through an intuitive dropdown-based interface.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Streamlit</span>
+                            <span>OpenRouter API</span>
+                            <span>Langchain</span>
+                            <span>Prompting</span>
+                            <span>StrOutputParser</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Tanishq-tec/AI-Interview-Preparation"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Lung Cancer Prediction Model by ML</h3>
+                        <p>A machine learning model built to predict lung cancer based on patient data such as age, gender, smoking history, yellow fingers and other medical features.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Scikit-Learn</span>
+                            <span>Pandas</span>
+                            <span>Matplotlib</span>
+                            <span>Seaborn</span>
+                            <span>joblib</span>
+                            <span>Langchain</span>
+                            <span>Prompting</span>
+                            <span>StrOutputParser</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Tanishq-tec/Lung-Cancer-Prediction-Model"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="certificates section bg-dark">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Machine Learning Specialization</h3>
+                    <p>By Google/Coursera</p>
+                    <a href="https://drive.google.com/file/d/16OcfxYT207cgf4tUsTAzqz_Z30E29sBx/view" class="cert-link">View Certificate</a>
+                </div>
+                <div class="cert-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Foundations of Data Science</h3>
+                    <p>IBM / Coursera</p>
+                    <a href="#" class="cert-link">View Certificate</a>
+                </div>
+                <div class="cert-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Pyhton Programming</h3>
+                    <p>By OneRoadMap</p>
+                    <a href="https://drive.google.com/drive/folders/1vEXhR4W0_Q8H8cYXqDOiHaxy6n5JbnV0/view" class="cert-link">View Certificate</a>
+                </div>
+                <div class="cert-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Data Analytics</h3>
+                    <p>By CodewithHarry</p>
+                    <a href="https://drive.google.com/file/d/1faizmggWbF6yr_JHf6unLlXI3qLlYIUD/view" class="cert-link">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Get In <span>Touch</span></h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span><a href="mailto:tanishq141516@gmail.com">tanishq141516@gmail.com</a></span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/tanishq-lodha-702580254/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Tanishq-tec"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/tanishq_lodha/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918141090767"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tanishq Lodha.</p>
+    </footer>
+
+    <script>
+        /**
+         * PORTFOLIO JAVASCRIPT (Embedded)
+         */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Mobile Navbar Toggle ---
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const links = document.querySelectorAll('.nav-links li');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = hamburger.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+
+            // --- 2. Scroll Animations (Reveal on Scroll) ---
+            const sectionsToAnimate = document.querySelectorAll('.section, .skill-card, .project-card, .cert-card');
+            
+            sectionsToAnimate.forEach(section => {
+                section.classList.add('reveal', 'fade-bottom');
+            });
+
+            function reveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                reveals.forEach(element => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+
+            reveal();
+            window.addEventListener('scroll', reveal);
+
+
+            // --- 3. Active Link Highlighting ---
+            const navItems = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section');
+
+            function activeMenu() {
+                let len = sections.length;
+                while(--len && window.scrollY + 100 < sections[len].offsetTop){}
+                navItems.forEach(ltx => ltx.classList.remove('active'));
+                navItems[len].classList.add('active');
+            }
+
+            window.addEventListener('scroll', activeMenu);
+
+
+            // --- 4. Contact Form Handling ---
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = contactForm.querySelector('input[type="text"]').value;
+                    alert(`Thanks ${name}! Your message has been sent (simulated).`);
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
